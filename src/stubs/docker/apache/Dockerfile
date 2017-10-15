@@ -1,7 +1,6 @@
-ARG PHP_VERSION=$PHP_VERSION
-ARG USER_UID=$USER_UID
+ARG POTTO_PHP_VERSION
 
-FROM php:${PHP_VERSION}-apache
+FROM php:${POTTO_PHP_VERSION}-apache
 
 RUN apt-get update && apt-get install -y \
 	subversion \
@@ -23,6 +22,8 @@ RUN a2dissite 000-default.conf
 RUN a2ensite site-default.conf
 RUN service apache2 restart
 
-RUN usermod -u ${USER_UID} www-data
+ARG POTTO_PUID
+ENV PUTTO_PUID ${POTTO_PUID}
+RUN usermod -u ${POTTO_PUID} www-data
 
 WORKDIR /var/www/

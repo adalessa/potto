@@ -1,11 +1,14 @@
-ARG NODE_VERSION
-FROM node:${NODE_VERSION}
+ARG POTTO_NODE_VERSION
+
+FROM node:${POTTO_NODE_VERSION}
 
 
 RUN npm install -g yarn
 
 WORKDIR /app
 
-RUN usermod -u ${USER_UID} node
+ARG POTTO_PUID
+ENV POTTO_PUID ${POTTO_PUID}
+RUN usermod -u ${POTTO_PUID} node
 
 USER node

@@ -5,33 +5,37 @@ services:
     build:
       context: ./apache
       args:
-        - PHP_VERSION=${PHP_VERSION}
-        - USER_UID=${USER_UID}
+        - POTTO_PHP_VERSION=${POTTO_PHP_VERSION}
+        - POTTO_PUID=${POTTO_PUID}
     volumes:
-      - ${APPLICATION}:/var/www
+      - ${POTTO_APPLICATION}:/var/www
     ports:
-      - ${HTTP_PORT}:80
+      - ${POTTO_HTTP_PORT}:80
   php:
     build:
       context: ./php
       args:
-        - PHP_VERSION=${PHP_VERSION}
-        - USER_UID=${USER_UID}
+        - POTTO_PHP_VERSION=${POTTO_PHP_VERSION}
+        - POTTO_PUID=${POTTO_PUID}
     volumes:
-      - ${APPLICATION}:/var/www
+      - ${POTTO_APPLICATION}:/var/www
   node:
     build:
       context: ./node
       args:
-        - NODE_VERSION=${NODE_VERSION}
-        - USER_UID=${USER_UID}
+        - POTTO_NODE_VERSION=${POTTO_NODE_VERSION}
+        - POTTO_PUID=${POTTO_PUID}
     volumes:
-      - ${APPLICATION}:/app
+      - ${POTTO_APPLICATION}:/app
   db:
-    image: mysql:${MYSQL_VERSION}
+    build:
+      context: ./db
+      args:
+        - POTTO_MYSQL_VERSION=${POTTO_MYSQL_VERSION}
+        - POTTO_PUID=${POTTO_PUID}
     volumes:
-      - ${STORAGE}/db:/var/lib/mysql
+      - ${POTTO_STORAGE}/db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${POTTO_MYSQL_PASSWORD}
   redis:
     image: redis

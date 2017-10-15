@@ -1,6 +1,6 @@
-ARG PHP_VERSION=$PHP_VERSION
+ARG POTTO_PHP_VERSION
 
-FROM php:${PHP_VERSION}-cli
+FROM php:${POTTO_PHP_VERSION}-cli
 
 RUN apt-get update && apt-get install -y \
 	subversion \
@@ -19,7 +19,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN useradd user
 
-RUN usermod -u ${USER_UID} user
+ARG POTTO_PUID
+ENV POTTO_PUID ${POTTO_PUID}
+RUN usermod -u ${POTTO_PUID} user
 
 RUN mkdir -p /home/user
 RUN chown -R user:user /home/user
