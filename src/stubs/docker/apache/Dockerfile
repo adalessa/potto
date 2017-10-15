@@ -1,4 +1,5 @@
 ARG PHP_VERSION=$PHP_VERSION
+ARG USER_UID=$USER_UID
 
 FROM php:${PHP_VERSION}-apache
 
@@ -22,6 +23,6 @@ RUN a2dissite 000-default.conf
 RUN a2ensite site-default.conf
 RUN service apache2 restart
 
-RUN usermod -u 1000 www-data
+RUN usermod -u ${USER_UID} www-data
 
 WORKDIR /var/www/

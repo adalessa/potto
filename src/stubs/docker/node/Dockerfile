@@ -6,4 +6,6 @@ RUN npm install -g yarn
 
 WORKDIR /app
 
+RUN usermod -u ${USER_UID} node
+
 USER node

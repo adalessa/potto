@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y \
 
 
 RUN useradd user
+
+RUN usermod -u ${USER_UID} user
+
 RUN mkdir -p /home/user
 RUN chown -R user:user /home/user
 USER user

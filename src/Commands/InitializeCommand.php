@@ -44,6 +44,13 @@ class InitializeCommand extends Command
                 'latest'
             )
             ->addOption(
+                'user',
+                '-u',
+                InputOption::VALUE_OPTIONAL,
+                'Define the user uid',
+                '1000'
+            )
+            ->addOption(
                 'mysql_pw',
                 null,
                 InputOption::VALUE_OPTIONAL,
@@ -83,6 +90,7 @@ class InitializeCommand extends Command
         $env = str_replace('DUMMY_PORT', $input->getOption('port'), $env);
         $env = str_replace('DUMMY_MYSQL_VERSION', $input->getOption('mysql'), $env);
         $env = str_replace('DUMMY_MYSQL_PASSWORD', $input->getOption('mysql_pw'), $env);
+        $env = str_replace('DUMMY_USER_UID', $input->getOption('user'), $env);
 
         file_put_contents($directory.'/.env', $env);
     }
