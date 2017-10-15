@@ -15,13 +15,20 @@ class UpCommand extends Command
     public function configure()
     {
         $this->setName('up')
-            ->setDescription('Starts the containers');
+            ->setDescription('Starts the containers')
+            ->addOption(
+                'build',
+                '-b',
+                InputOption::VALUE_NONE,
+                'Re build the containers after a change in the configuration'
+            );
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
 
         $directory = getcwd().'/.docker';
-        passthru('cd '. $directory .' && docker-compose up -d');
+        $build = $input->getOption('build') ? ' --build':'';
+        passthru('cd '. $directory .' && docker-compose up -d'.$build);
     }
 }
