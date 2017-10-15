@@ -1,0 +1,16 @@
+{
+    "name": "adalessa/potto",
+    "description": "A docker implementation for laravel",
+    "require": {
+        "symfony/console": "^3.3",
+        "symfony/filesystem": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Potto\\": "src"
+        }
+    },
+    "bin": [
+        "potto"
+    ]
+}

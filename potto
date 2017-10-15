@@ -1,0 +1,27 @@
+#! /usr/bin/env php
+
+<?php
+
+use Symfony\Component\Console\Application;
+
+
+if (file_exists(__DIR__.'/../../autoload.php')) {
+    require __DIR__.'/../../autoload.php';
+} else {
+    require __DIR__.'/vendor/autoload.php';
+}
+
+$app = new Application('Potto', '0.0.1');
+
+$app->add(new \Potto\Commands\InitializeCommand());
+
+$app->add(new \Potto\Commands\ArtisanCommand());
+$app->add(new \Potto\Commands\MysqlCommand());
+$app->add(new \Potto\Commands\NodeCommand());
+
+$app->add(new \Potto\Commands\StatusCommand());
+$app->add(new \Potto\Commands\UpCommand());
+$app->add(new \Potto\Commands\DownCommand());
+$app->add(new \Potto\Commands\StopCommand());
+
+$app->run();
