@@ -40,16 +40,17 @@ Options:
   -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
 
 Available commands:
-  art    Runs an Artisan command
-  down   Down the containers | destroys the containers
-  help   Displays help for a command
-  init   Initialize a project
-  list   Lists commands
-  mysql  Connects to the mysql
-  node   Runs an Node command
-  ps     Shows the status of the containers
-  stop   Stops the containers
-  up     Starts the containers
+  art      Runs an Artisan command
+  composer Runs a composer command
+  down     Down the containers | destroys the containers
+  help     Displays help for a command
+  init     Initialize a project
+  list     Lists commands
+  mysql    Connects to the mysql
+  node     Runs an Node command
+  ps       Shows the status of the containers
+  stop     Stops the containers
+  up       Starts the containers
 ```
 
 ## Dependencies
@@ -130,6 +131,13 @@ potto art
 ```
 
 that will run the php artisan inside of the php container
+
+### Composer
+
+To run a composer command you run
+```
+potto composer
+```
 
 ### Node
 As you can imagine at this point all you need to do to install dependencies
