@@ -28,8 +28,6 @@ class ArtisanCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $cmd = $input->getArgument('expression');
-        $dc = new DockerCompose();
-        $dc->run('run php php artisan', $cmd);
+        (new DockerCompose())->run('run php php artisan', $input->getArgument('expression'));
     }
 }

@@ -28,8 +28,6 @@ class NodeCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $cmd = $input->getArgument('expression');
-        $dc = new DockerCompose();
-        $dc->run('run node', $cmd);
+        (new DockerCompose())->run('run node', $input->getArgument('expression'));
     }
 }

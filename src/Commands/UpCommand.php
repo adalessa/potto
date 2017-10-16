@@ -27,8 +27,6 @@ class UpCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $dc = new DockerCompose();
-        $build = $input->getOption('build') ? ' --build':'';
-        $dc->run('up -d', $build);
+        (new DockerCompose())->run('up -d ', $input->getOption('build') ? ' --build':'');
     }
 }

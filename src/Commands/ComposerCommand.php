@@ -28,8 +28,6 @@ class ComposerCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $cmd = $input->getArgument('expression');
-        $dc = new DockerCompose();
-        $dc->run('run php composer', $cmd);
+        (new DockerCompose())->run('run php composer', $input->getArgument('expression'));
     }
 }
