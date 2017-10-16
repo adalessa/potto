@@ -16,6 +16,7 @@ $app = new Application('Potto', '0.0.1');
 $app->add(new \Potto\Commands\InitializeCommand());
 
 $app->add(new \Potto\Commands\ArtisanCommand());
+$app->add(new \Potto\Commands\ComposerCommand());
 $app->add(new \Potto\Commands\MysqlCommand());
 $app->add(new \Potto\Commands\NodeCommand());
 

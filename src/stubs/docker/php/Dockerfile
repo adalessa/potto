@@ -17,6 +17,13 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_mysql
 
 
+# Install composer
+RUN apt-get install -y wget
+RUN cd /tmp
+ADD composer.sh composer.sh
+RUN sh composer.sh
+RUN mv composer.phar /usr/bin/composer
+
 RUN useradd user
 
 ARG POTTO_PUID
@@ -29,5 +36,5 @@ USER user
 
 WORKDIR /var/www/
 
-ENTRYPOINT [ "php", "artisan" ]
+# ENTRYPOINT [ "php", "artisan" ]
 

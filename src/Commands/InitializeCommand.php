@@ -71,7 +71,7 @@ class InitializeCommand extends Command
 
         $this->setEnvironment($input, $directory);
 
-        passthru('cd '. $directory .' && docker-compose up -d');
+        passthru('cd '. $directory .' && docker-compose up --build -d');
         $output->writeln('Docker is set it up');
     }
 

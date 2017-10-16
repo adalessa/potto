@@ -10,12 +10,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Exception\RuntimeException;
 
-class ArtisanCommand extends Command
+class ComposerCommand extends Command
 {
     public function configure()
     {
-        $this->setName('art')
-            ->setDescription('Runs an Artisan command')
+        $this->setName('composer')
+            ->setDescription('Runs an composer command')
             ->addArgument(
                 'expression',
                 InputArgument::IS_ARRAY,
@@ -30,6 +30,6 @@ class ArtisanCommand extends Command
         $cmd = $input->getArgument('expression');
         // check if docker folder exists
         $directory = getcwd().'/.docker';
-        passthru('cd '. $directory .' && docker-compose run php php artisan ' . implode(' ', $cmd));
+        passthru('cd '. $directory .' && docker-compose run php composer ' . implode(' ', $cmd));
     }
 }
