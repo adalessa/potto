@@ -2,6 +2,7 @@
 
 namespace Potto\Commands;
 
+use Potto\DockerCompose;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -26,9 +27,8 @@ class UpCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-
-        $directory = getcwd().'/.docker';
+        $dc = new DockerCompose();
         $build = $input->getOption('build') ? ' --build':'';
-        passthru('cd '. $directory .' && docker-compose up -d'.$build);
+        $dc->run('up -d', $build);
     }
 }

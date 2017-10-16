@@ -2,6 +2,7 @@
 
 namespace Potto\Commands;
 
+use Potto\DockerCompose;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -61,17 +62,16 @@ class InitializeCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-
-        // check if docker folder exists
-        $directory = getcwd().'/.docker';
+        $dc = new DockerCompose();
+        $directory = $dc->getDirectory();
         $this->verifyDockerDoesNotExists($directory);
 
         $fs = new Filesystem();
         $fs->mirror(__DIR__.'/../stubs/docker/', $directory);
 
         $this->setEnvironment($input, $directory);
-
-        passthru('cd '. $directory .' && docker-compose up --build -d');
+        
+        $dc->run('up --build -d');
         $output->writeln('Docker is set it up');
     }
 

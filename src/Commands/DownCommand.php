@@ -2,6 +2,7 @@
 
 namespace Potto\Commands;
 
+use Potto\DockerCompose;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -20,9 +21,6 @@ class DownCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-
-        // check if docker folder exists
-        $directory = getcwd().'/.docker';
-        passthru('cd '. $directory .' && docker-compose down');
+        (new DockerCompose())->run('down');
     }
 }

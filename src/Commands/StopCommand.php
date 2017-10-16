@@ -2,6 +2,7 @@
 
 namespace Potto\Commands;
 
+use Potto\DockerCompose;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -20,8 +21,6 @@ class StopCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-
-        $directory = getcwd().'/.docker';
-        passthru('cd '. $directory .' && docker-compose stop');
+        (new DockerCompose())->run('stop');
     }
 }

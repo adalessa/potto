@@ -2,6 +2,7 @@
 
 namespace Potto\Commands;
 
+use Potto\DockerCompose;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -28,8 +29,7 @@ class NodeCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $cmd = $input->getArgument('expression');
-        // check if docker folder exists
-        $directory = getcwd().'/.docker';
-        passthru('cd '. $directory .' && docker-compose run node ' . implode(' ', $cmd));
+        $dc = new DockerCompose();
+        $dc->run('run node', $cmd);
     }
 }
